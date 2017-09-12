@@ -1,0 +1,12 @@
+<form [formGroup]="editorForm" novalidate>
+  <textarea formControlName="editor" id="editor" (keyup)="onEditorKeyup($event)" (select)="onEditorSelect($event)" (click)="onEditorClick($event)"></textarea>
+
+  <div formGroupName="selection" id="selectionInput">
+    <label>Selection: </label>
+    <input formControlName="start">..
+    <input formControlName="end">
+  </div>
+
+  <p>Form value: {{ editorForm.value | json }}</p>
+  <p>Form status: {{ editorForm.status | json }}</p>
+</form>
