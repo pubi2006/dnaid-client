@@ -21,6 +21,16 @@ export class EditorComponent {
     });
   }
 
+  onButtonSelect(textArea : HTMLTextAreaElement) {
+    let start = this.editorForm.get('selection.start').value;
+    let end = this.editorForm.get('selection.end').value;
+    setTimeout(() => {
+      textArea.focus();
+      textArea.selectionStart = start;
+      textArea.selectionEnd = end;
+    });
+  }
+
   onEditorSelect(event : UIEvent) {
     this.updateSelectionFormGroup(event);
   }
