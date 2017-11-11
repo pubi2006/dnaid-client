@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Range} from "./editor.state";
 
 @Component({
@@ -17,7 +17,8 @@ export class EditorComponent {
   createForm(){
     this.editorForm = this.fb.group({
       editor: '',
-      selection: this.fb.group(new Range(0,0)) // <-- the child FormGroup
+      selection: this.fb.group(new Range(0,0)),
+      exactSearch: this.fb.group({pattern : ['', Validators.minLength(1)]})// <-- the child FormGroup
     });
   }
 
@@ -29,6 +30,11 @@ export class EditorComponent {
       textArea.selectionStart = start;
       textArea.selectionEnd = end;
     });
+  }
+
+  onButtonFind(textArea : HTMLTextAreaElement) {
+    let pattern = this.editorForm.get('exactSearch.pattern').value;
+
   }
 
   onEditorSelect(event : UIEvent) {

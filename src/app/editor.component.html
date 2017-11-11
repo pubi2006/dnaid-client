@@ -1,12 +1,20 @@
 <form [formGroup]="editorForm" novalidate>
-  <textarea #textArea formControlName="editor" id="editor" (keyup)="onEditorKeyup($event)" (select)="onEditorSelect($event)" (click)="onEditorClick($event)"></textarea>
+  <textarea #textArea formControlName="editor" id="editor" pattern="[AaCcGgTtNn]+$" (keyup)="onEditorKeyup($event)" (select)="onEditorSelect($event)" (click)="onEditorClick($event)"></textarea>
 
   <div formGroupName="selection" id="selectionInput">
-    <label>Selection: </label>
-    <input formControlName="start">..
-    <input formControlName="end">
+    <label>Selection:</label>
+    <input formControlName="start" type="number" min="0">..
+    <input formControlName="end" type="number" min="0">
     <button (click)="onButtonSelect(textArea)">Select</button>
   </div>
+
+  <div formGroupName="exactSearch" id="exactSearchInput">
+    <label>Exact search:</label>
+    <input formControlName="pattern">
+    <button (click)="onButtonFind(textArea)">Find</button>
+  </div>
+
+
 
   <p>Form value: {{ editorForm.value | json }}</p>
   <p>Form status: {{ editorForm.status | json }}</p>

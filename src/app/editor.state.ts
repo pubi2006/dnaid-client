@@ -1,7 +1,7 @@
 export class EditorState {
   content = '';
   selection = new Range(0,0);
-  searchFor = '';
+  pattern = '';
   matches : Range[];
 }
 
